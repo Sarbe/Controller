@@ -21,7 +21,7 @@ cd $WRK_DIR/$GIT_DIR||exit
 mvn clean install
 
 #4 copy jar to src folder
-cp *.jar $WRK_DIR/POS-Retailer.jar
+cp target/*.jar $WRK_DIR/POS-Retailer.jar
 
 
 
