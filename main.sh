@@ -8,7 +8,7 @@ cd $WRK_DIR||exit
 
 if [ -d $WRK_DIR/$GIT_DIR ] 
 then
-	rm -r -f
+	rm -r -f $GIT_DIR
 fi
 
 echo 'Cloning Repository from GIT for first time.'
