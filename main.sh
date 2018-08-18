@@ -8,6 +8,7 @@ cd $WRK_DIR||exit
 
 if [ -d $WRK_DIR/$GIT_DIR ] 
 then
+	echo "Removing exisiting dir $GIT_DIR"
 	rm -r -f $GIT_DIR
 fi
 
@@ -22,6 +23,7 @@ mvn clean install
 
 #4 copy jar to src folder
 cp target/*.jar $WRK_DIR/POS-Retailer.jar
+
 
 
 
