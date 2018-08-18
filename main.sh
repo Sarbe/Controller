@@ -1,6 +1,6 @@
 #!/bin/sh
 
-WRK_DIR=/home/sarbe/POS/src
+WRK_DIR=$HOME/POS/src
 
 GIT_DIR=Rxdfert
 #1.go to working folder
