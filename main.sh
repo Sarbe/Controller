@@ -6,7 +6,7 @@ GIT_DIR=Rxdfert
 #1.go to working folder
 cd $WRK_DIR||exit
 
-if [ -d $WRK_DIR/Rxdfert ] 
+if [ -d $WRK_DIR/$GIT_DIR ] 
 then
 	rm -r -f
 fi
@@ -15,7 +15,7 @@ echo 'Cloning Repository from GIT for first time.'
 git clone https://github.com/Sarbe/Rxdfert.git
 
 #3.. go to Rxdfert folder
-cd $WRK_DIR/Rxdfert||exit
+cd $WRK_DIR/$GIT_DIR||exit
 
 #4. mvn install
 mvn clean install
