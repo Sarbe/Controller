@@ -1,14 +1,28 @@
 #!/bin/sh
 
-WRK_DIR=$HOME/POS/src
+CODE_DIR=$HOME/POS/code
+ENV_DIR=$HOME/POS/env
 
 GIT_DIR=Rxdfert
-#1.go to working folder
-cd $WRK_DIR||exit
-
-if [ -d $WRK_DIR/$GIT_DIR ] 
+#1. Create codebase dir
+if [ ! -d $CODE_DIR ] 
 then
-	echo "Removing exisiting dir $GIT_DIR"
+	echo "dir structure not present. creating $CODE_DIR"
+	mkdir -p $CODE_DIR
+fi
+# 2. Create actual env dir
+if [ ! -d $ENV_DIR ] 
+then
+	echo "dir structure not present. creating $ENV_DIR"
+	mkdir -p $ENV_DIR
+fi
+###
+
+cd $CODE_DIR
+
+if [ -d $CODE_DIR/$GIT_DIR ] 
+then
+	echo "Removing exisiting GIT dir $GIT_DIR"
 	rm -r -f $GIT_DIR
 fi
 
@@ -16,14 +30,36 @@ echo 'Cloning Repository from GIT for first time.'
 git clone https://github.com/Sarbe/Rxdfert.git
 
 #3.. go to Rxdfert folder
-cd $WRK_DIR/$GIT_DIR||exit
+cd $CODE_DIR/$GIT_DIR||exit
 
-#4. mvn install
+#4. check if mvn present else install
+mvn --version
+rc=$?
+if [ $rc != 0 ] # Not Present
+then 
+	echo "maven not present. Installing maven ..."
+	sudo apt-get install maven
+fi
+
+#5. Install any third party jar to maven repo
+mvn install:install-file -Dfile=MyRobotoFont-1.0.jar -DgroupId=MyRobotoFont -DartifactId=MyRobotoFont -Dversion=1.0  -Dpackaging=jar  
+
+
 mvn clean install
+#6 copy required files
+# i. Jar
+cp target/*.jar $ENV_DIR/POS-Retailer.jar
 
-#4 copy jar to src folder
-cp target/*.jar $WRK_DIR/POS-Retailer.jar
+# ii. Properties file if any
 
+#7. Database installation
+
+
+# Last activity
+#remove git dir
+cd $CODE_DIR
+sudo rm -r -f *
+exit
 
 
 
