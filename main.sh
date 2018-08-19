@@ -1,7 +1,7 @@
 #!/bin/sh
 
 CODE_DIR=$HOME/POS/code
-ENV_DIR=$HOME/POS/env
+PRD_DIR=$HOME/POS/prd
 
 GIT_DIR=Rxdfert
 #1. Create codebase dir
@@ -10,11 +10,11 @@ then
 	echo "dir structure not present. creating $CODE_DIR"
 	mkdir -p $CODE_DIR
 fi
-# 2. Create actual env dir
-if [ ! -d $ENV_DIR ] 
+# 2. Create actual prd dir
+if [ ! -d $PRD_DIR ] 
 then
-	echo "dir structure not present. creating $ENV_DIR"
-	mkdir -p $ENV_DIR
+	echo "dir structure not present. creating $PRD_DIR"
+	mkdir -p $PRD_DIR
 fi
 ###
 
@@ -48,10 +48,10 @@ mvn install:install-file -Dfile=MyRobotoFont-1.0.jar -DgroupId=MyRobotoFont -Dar
 mvn clean install
 #6 copy required files
 # i. Jar
-cp target/*.jar $ENV_DIR/POS-Retailer.jar
+cp target/*.jar $PRD_DIR/POS-Retailer.jar
 
 # ii. Properties file if any
-
+cp start.html $HOME/Desktop/WareHouse.html
 #7. Database installation
 
 
